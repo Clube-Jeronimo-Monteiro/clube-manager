@@ -17,7 +17,7 @@ object Form1: TForm1
     Top = 8
     Width = 1264
     Height = 752
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Mensalidades'
@@ -38,6 +38,7 @@ object Form1: TForm1
       end
       object Socio2: TMenuItem
         Caption = 'Dependente'
+        OnClick = Socio2Click
       end
     end
   end
