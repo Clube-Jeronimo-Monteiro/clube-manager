@@ -1,9 +1,9 @@
-object Form2: TForm2
+object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Cadastro de Socio'
-  ClientHeight = 409
-  ClientWidth = 339
+  Caption = 'Form3'
+  ClientHeight = 431
+  ClientWidth = 338
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,14 +15,27 @@ object Form2: TForm2
     Left = 0
     Top = 0
     Width = 337
-    Height = 409
+    Height = 433
     TabOrder = 0
+    object Label3: TLabel
+      Left = 16
+      Top = 327
+      Width = 206
+      Height = 15
+      Caption = 'Ser'#225' cadastrado como dependente do: '
+    end
+    object NomeSocio: TLabel
+      Left = 16
+      Top = 356
+      Width = 3
+      Height = 15
+    end
     object GroupBox1: TGroupBox
       Left = 16
       Top = 8
       Width = 281
-      Height = 132
-      Caption = 'Dados Socio'
+      Height = 89
+      Caption = 'Dados Dependente'
       TabOrder = 0
       object Label1: TLabel
         Left = 16
@@ -31,47 +44,18 @@ object Form2: TForm2
         Height = 15
         Caption = 'Nome Completo'
       end
-      object Label5: TLabel
-        Left = 16
-        Top = 76
-        Width = 76
-        Height = 15
-        Caption = 'Numero Socio'
-      end
-      object Label6: TLabel
-        Left = 143
-        Top = 26
-        Width = 44
-        Height = 15
-        Caption = 'Telefone'
-      end
-      object EDName: TEdit
+      object EDNameDependente: TEdit
         Left = 16
         Top = 47
-        Width = 121
+        Width = 249
         Height = 23
-        ImeName = 'US'
+        ImeName = 'Portuguese (Brazilian ABNT)'
         TabOrder = 0
-      end
-      object EDCodSocio: TEdit
-        Left = 16
-        Top = 97
-        Width = 121
-        Height = 23
-        TabOrder = 1
-      end
-      object EDTelefone: TEdit
-        Left = 143
-        Top = 47
-        Width = 121
-        Height = 23
-        ImeName = 'US'
-        TabOrder = 2
       end
     end
     object Button1: TButton
       Left = 16
-      Top = 337
+      Top = 392
       Width = 281
       Height = 33
       Caption = 'Cadastrar'
@@ -80,55 +64,60 @@ object Form2: TForm2
     end
     object GroupBox2: TGroupBox
       Left = 16
-      Top = 146
+      Top = 103
       Width = 281
-      Height = 175
-      Caption = 'Endere'#231'o'
+      Height = 218
+      Caption = 'Selecione um S'#243'cio'
       TabOrder = 2
       object Label2: TLabel
         Left = 16
-        Top = 18
-        Width = 31
+        Top = 26
+        Width = 33
         Height = 15
-        Caption = 'Bairro'
+        Caption = 'Nome'
       end
-      object Label3: TLabel
+      object EDNome: TEdit
         Left = 16
-        Top = 66
-        Width = 20
-        Height = 15
-        Caption = 'Rua'
-      end
-      object Label4: TLabel
-        Left = 16
-        Top = 114
-        Width = 44
-        Height = 15
-        Caption = 'Numero'
-      end
-      object EDBairro: TEdit
-        Left = 16
-        Top = 37
-        Width = 121
+        Top = 47
+        Width = 185
         Height = 23
+        ImeName = 'Portuguese (Brazilian ABNT)'
         TabOrder = 0
       end
-      object EDRua: TEdit
-        Left = 16
-        Top = 85
-        Width = 121
+      object Button2: TButton
+        Left = 207
+        Top = 47
+        Width = 70
         Height = 23
-        ImeName = 'Portuguese (Brazilian ABNT)'
+        Caption = 'Pesquisar'
         TabOrder = 1
+        OnClick = Button2Click
       end
-      object EDNumero: TEdit
-        Left = 16
-        Top = 135
-        Width = 121
-        Height = 23
-        ImeName = 'Portuguese (Brazilian ABNT)'
-        TabOrder = 2
-      end
+    end
+    object DBGrid1: TDBGrid
+      Left = 32
+      Top = 179
+      Width = 257
+      Height = 120
+      DataSource = REQuery
+      TabOrder = 3
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -12
+      TitleFont.Name = 'Segoe UI'
+      TitleFont.Style = []
+      OnCellClick = DBGrid1CellClick
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'id'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'nome'
+          Visible = True
+        end>
     end
   end
   object Conexao: TFDConnection
@@ -141,17 +130,34 @@ object Form2: TForm2
     Connected = True
     LoginPrompt = False
     Left = 304
-    Top = 128
+    Top = 232
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=clube-dev'
+      'User_Name=academia-api'
+      'Password=6414'
+      'Server=127.0.0.1'
+      'DriverID=MySQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 304
+    Top = 40
+  end
+  object dsSocio: TDataSource
+    DataSet = tbSocio
+    Left = 304
+    Top = 328
   end
   object tbSocio: TFDTable
     Active = True
     IndexFieldNames = 'id'
-    Connection = Conexao
+    Connection = FDConnection1
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     CatalogName = 'clube-dev'
     TableName = '`clube-dev`.socio'
     Left = 304
-    Top = 320
+    Top = 280
     object tbSocioid: TFDAutoIncField
       FieldName = 'id'
       Origin = 'id'
@@ -194,14 +200,19 @@ object Form2: TForm2
       Size = 255
     end
   end
-  object dsSocio: TDataSource
+  object REQuery: TDataSource
     DataSet = tbSocio
     Left = 304
-    Top = 192
+    Top = 184
   end
   object FDQuery1: TFDQuery
     Connection = Conexao
-    Left = 303
-    Top = 248
+    Left = 288
+    Top = 88
+  end
+  object FDQuery2: TFDQuery
+    Connection = Conexao
+    Left = 296
+    Top = 144
   end
 end
