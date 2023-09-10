@@ -41,5 +41,15 @@ object Form1: TForm1
         OnClick = Socio2Click
       end
     end
+    object Editar1: TMenuItem
+      Caption = 'Editar'
+      object Socio3: TMenuItem
+        Caption = 'Socio'
+        OnClick = Socio3Click
+      end
+      object Dependente1: TMenuItem
+        Caption = 'Dependente'
+      end
+    end
   end
 end
