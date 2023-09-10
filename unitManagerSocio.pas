@@ -33,8 +33,10 @@ type
     dsSocio: TDataSource;
     EDTelefone: TEdit;
     Label6: TLabel;
+    FDQuery1: TFDQuery;
     procedure DBGrid1CellClick(Column: TColumn);
     procedure DBGrid1TitleClick(Column: TColumn);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -47,6 +49,15 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm4.Button1Click(Sender: TObject);
+begin
+  FDQuery1.Params.Clear;
+  FDQuery1.SQL.Text := 'DELETE FROM socio WHERE codSocio = :codSocio LIMIT 1';
+  FDQuery1.ParamByName('codSocio').AsInteger := StrToInt(EDCode.Text);
+  FDQuery1.ExecSQL;
+  ShowMessage('Socio removido com sucesso!');
+end;
 
 procedure TForm4.DBGrid1CellClick(Column: TColumn);
 

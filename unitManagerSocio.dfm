@@ -189,6 +189,7 @@ object Form4: TForm4
     Height = 51
     Caption = 'Remover'
     TabOrder = 4
+    OnClick = Button1Click
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -217,5 +218,10 @@ object Form4: TForm4
     DataSet = FDTable1
     Left = 488
     Top = 264
+  end
+  object FDQuery1: TFDQuery
+    Connection = FDConnection1
+    Left = 496
+    Top = 184
   end
 end
