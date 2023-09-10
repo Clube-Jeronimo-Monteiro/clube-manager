@@ -34,9 +34,12 @@ type
     EDTelefone: TEdit;
     Label6: TLabel;
     FDQuery1: TFDQuery;
+    Button2: TButton;
     procedure DBGrid1CellClick(Column: TColumn);
     procedure DBGrid1TitleClick(Column: TColumn);
     procedure Button1Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -57,6 +60,29 @@ begin
   FDQuery1.ParamByName('codSocio').AsInteger := StrToInt(EDCode.Text);
   FDQuery1.ExecSQL;
   ShowMessage('Socio removido com sucesso!');
+end;
+
+procedure TForm4.Button2Click(Sender: TObject);
+begin
+  FDQuery1.Params.Clear;
+  FDQuery1.SQL.Text := 'UPDATE socio SET codSocio=:Codigo LIMIT 1';
+  FDQuery1.ParamByName('Codigo').AsInteger := StrToInt(EDCode.Text);
+  FDQuery1.ExecSQL;
+  ShowMessage('Codigo alterado!');
+end;
+
+procedure TForm4.Button3Click(Sender: TObject);
+begin
+  FDQuery1.Params.Clear;
+  FDQuery1.SQL.Text := 'UPDATE socio SET nome=:Nome, telefone=:Telefone, bairro=:Bairro, rua=:Rua, numero=:Numero LIMIT 1';
+  FDQuery1.ParamByName('Nome').Value := EDName.Text;
+  FDQuery1.ParamByName('Telefone').Value := EDTelefone.Text;
+  FDQuery1.ParamByName('Numero').Value := EDNumero.Text;
+  FDQuery1.ParamByName('Bairro').Value := EDBairro.Text;
+  FDQuery1.ParamByName('Rua').Value := EDRua.Text;
+
+  FDQuery1.ExecSQL;
+  ShowMessage('Dados atualizado!');
 end;
 
 procedure TForm4.DBGrid1CellClick(Column: TColumn);

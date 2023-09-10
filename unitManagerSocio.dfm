@@ -99,7 +99,7 @@ object Form4: TForm4
     object EDCode: TEdit
       Left = 16
       Top = 80
-      Width = 153
+      Width = 89
       Height = 23
       ImeName = 'Portuguese (Brazilian ABNT)'
       TabOrder = 0
@@ -119,6 +119,15 @@ object Form4: TForm4
       Height = 23
       ImeName = 'US'
       TabOrder = 2
+    end
+    object Button2: TButton
+      Left = 111
+      Top = 80
+      Width = 58
+      Height = 23
+      Caption = 'Atualizar'
+      TabOrder = 3
+      OnClick = Button2Click
     end
   end
   object GroupBox3: TGroupBox
@@ -181,6 +190,7 @@ object Form4: TForm4
     Height = 51
     Caption = 'Salvar'
     TabOrder = 3
+    OnClick = Button3Click
   end
   object Button1: TButton
     Left = 488
