@@ -28,6 +28,7 @@ type
     dbConnection: TFDConnection;
     FDTableMensalidade: TFDTable;
     DSMensalidade: TDataSource;
+    FDQuery1: TFDQuery;
     procedure Socio1Click(Sender: TObject);
     procedure Socio2Click(Sender: TObject);
     procedure Socio3Click(Sender: TObject);

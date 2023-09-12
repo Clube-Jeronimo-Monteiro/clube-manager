@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Clube Campestre Manager'
-  ClientHeight = 808
+  ClientHeight = 788
   ClientWidth = 1280
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -35,28 +35,49 @@ object Form1: TForm1
         TitleFont.Style = []
         Columns = <
           item
+            Alignment = taCenter
             Expanded = False
-            FieldName = 'socioid'
+            FieldName = 'nome'
+            ImeName = 'Portuguese (Brazilian ABNT)'
+            Title.Alignment = taCenter
+            Title.Caption = 'Socio'
+            Width = 300
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'datapagamento'
+            Title.Alignment = taCenter
+            Title.Caption = 'Data de Pagamento'
+            Width = 200
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'valor'
+            Title.Alignment = taCenter
+            Title.Caption = 'Valor'
+            Width = 200
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'valorpago'
+            Title.Alignment = taCenter
+            Title.Caption = 'Valor Pago'
+            Width = 200
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'datavencimento'
+            Title.Alignment = taCenter
+            Title.Caption = 'Data de Vencimento'
+            Width = 200
             Visible = True
           end>
       end
@@ -100,8 +121,8 @@ object Form1: TForm1
       'DriverID=MySQL')
     Connected = True
     LoginPrompt = False
-    Left = 480
-    Top = 32
+    Left = 704
+    Top = 48
   end
   object FDTableMensalidade: TFDTable
     Active = True
@@ -110,12 +131,22 @@ object Form1: TForm1
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     CatalogName = 'clube-dev'
     TableName = 'mensalidade'
-    Left = 580
-    Top = 34
+    Left = 588
+    Top = 50
   end
   object DSMensalidade: TDataSource
-    DataSet = FDTableMensalidade
-    Left = 704
+    DataSet = FDQuery1
+    Left = 816
     Top = 48
+  end
+  object FDQuery1: TFDQuery
+    Active = True
+    Connection = dbConnection
+    SQL.Strings = (
+      
+        'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  `codSoc' +
+        'io`')
+    Left = 492
+    Top = 58
   end
 end
