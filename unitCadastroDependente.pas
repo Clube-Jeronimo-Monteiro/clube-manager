@@ -78,8 +78,8 @@ end;
 
 procedure TForm3.Button2Click(Sender: TObject);
 begin
-  FDQuery1.SQL.Text := 'SELECT * FROM socio WHERE nome = :NomeCliente';
-  FDQuery1.ParamByName('NomeCliente').AsString := EDNome.Text;
+  FDQuery1.SQL.Text := 'SELECT * FROM socio WHERE nome LIKE :NomeCliente';
+  FDQuery1.ParamByName('NomeCliente').AsString := '%' + EDNome.Text + '%';
 
   REQuery.DataSet := FDQuery1;
   FDQuery1.Open;

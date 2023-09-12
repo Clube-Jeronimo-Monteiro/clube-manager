@@ -70,7 +70,13 @@ begin
 
   FDQuery1.ExecSQL;
 
-  ShowMessage('Socio cadastrado com sucesso!');
+  FDQuery1.SQL.Text := 'INSERT INTO mensalidade (socioid, valor, datavencimento) VALUES (:SocioId, :Valor, :DataVencimento)';
+  FDQuery1.ParamByName('SocioId').AsInteger := StrToInt(EDCodSocio.Text);
+  FDQuery1.ParamByName('Valor').AsFloat := 80.0;
+  FDQuery1.ParamByName('DataVencimento').AsDate := EncodeDate(2023, 12, 15);
+  FDQuery1.ExecSQL;
+
+  ShowMessage('Socio cadastrado com sucesso e mensalidade gerada!');
   Close;
 except
   on E: Exception do
