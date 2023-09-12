@@ -33,6 +33,7 @@ object Form1: TForm1
         TitleFont.Height = -12
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
+        OnDrawColumnCell = DBGrid1DrawColumnCell
         Columns = <
           item
             Alignment = taCenter
@@ -72,12 +73,16 @@ object Form1: TForm1
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'datavencimento'
-            Title.Alignment = taCenter
-            Title.Caption = 'Data de Vencimento'
-            Width = 200
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'status'
+            Title.Caption = 'Status'
+            Width = 235
             Visible = True
           end>
       end
