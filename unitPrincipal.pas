@@ -32,6 +32,8 @@ type
     procedure Socio1Click(Sender: TObject);
     procedure Socio2Click(Sender: TObject);
     procedure Socio3Click(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -46,6 +48,39 @@ implementation
 {$R *.dfm}
 
 uses unitDM, unitCadastroSocio, unitCadastroDependente, unitManagerSocio;
+
+procedure TForm1.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+  DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  CurrentDate, CellDate: TDateTime;
+begin
+
+// Verifica se o campo na coluna é nulo
+  if (Column.FieldName = 'status') and (DSMensalidade.DataSet.FieldByName('status').AsString = 'pendente') then
+  begin
+    DBGrid1.Canvas.Brush.Color := clYellow; // Define a cor laranja
+    DBGrid1.Canvas.Font.Color := clBlack;   // Define a cor do texto (opcional)
+  end;
+  if (Column.FieldName = 'status') and (DSMensalidade.DataSet.FieldByName('status').AsString = 'pago') then
+  begin
+    DBGrid1.Canvas.Brush.Color := clGreen; // Define a cor laranja
+    DBGrid1.Canvas.Font.Color := clBlack;   // Define a cor do texto (opcional)
+  end;
+  if Column.FieldName = 'status' then
+  begin
+    CurrentDate := Now;
+    CellDate := DSMensalidade.DataSet.FieldByName('datavencimento').AsDateTime;
+    if (CurrentDate > CellDate) and (DSMensalidade.DataSet.FieldByName('status').AsString = 'pendente') then
+    begin
+      DBGrid1.Canvas.Brush.Color := clRed; // Define a cor vermelha
+      DBGrid1.Canvas.Font.Color := clWhite; // Define a cor do texto (opcional)
+    end;
+  end;
+
+
+  // Desenha a célula
+  DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+end;
 
 procedure TForm1.Socio1Click(Sender: TObject);
 begin
