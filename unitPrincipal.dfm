@@ -75,15 +75,21 @@ object Form1: TForm1
           item
             Expanded = False
             FieldName = 'datavencimento'
+<<<<<<< HEAD
             Title.Alignment = taCenter
             Title.Caption = 'Data de Vencimento'
+=======
+>>>>>>> 55295d1b19f347b9cd458a06ae979b364575c47f
             Visible = True
           end
           item
             Alignment = taCenter
             Expanded = False
             FieldName = 'status'
+<<<<<<< HEAD
             Title.Alignment = taCenter
+=======
+>>>>>>> 55295d1b19f347b9cd458a06ae979b364575c47f
             Title.Caption = 'Status'
             Width = 235
             Visible = True
