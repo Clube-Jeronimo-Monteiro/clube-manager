@@ -83,12 +83,13 @@ object Form1: TForm1
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'status'
-            Title.Alignment = taCenter
-            Title.Caption = 'Status'
-            Width = 235
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'id_1'
             Visible = True
           end>
       end
@@ -105,18 +106,15 @@ object Form1: TForm1
       Caption = 'Cadastrar'
       object Socio1: TMenuItem
         Caption = 'Socio'
-        OnClick = Socio1Click
       end
       object Socio2: TMenuItem
         Caption = 'Dependente'
-        OnClick = Socio2Click
       end
     end
     object Editar1: TMenuItem
       Caption = 'Editar'
       object Socio3: TMenuItem
         Caption = 'Socio'
-        OnClick = Socio3Click
       end
       object Dependente1: TMenuItem
         Caption = 'Dependente'

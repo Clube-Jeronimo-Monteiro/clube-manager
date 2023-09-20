@@ -10,6 +10,7 @@ object Form5: TForm5
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnShow = FormShow
   TextHeight = 15
   object GroupBox1: TGroupBox
     Left = 8
@@ -58,6 +59,7 @@ object Form5: TForm5
     Height = 25
     Caption = 'Cancelar'
     TabOrder = 1
+    OnClick = Button1Click
   end
   object Button2: TButton
     Left = 8
@@ -66,6 +68,7 @@ object Form5: TForm5
     Height = 25
     Caption = 'Pagar'
     TabOrder = 2
+    OnClick = Button2Click
   end
   object GroupBox2: TGroupBox
     Left = 223

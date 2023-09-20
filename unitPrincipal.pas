@@ -38,7 +38,7 @@ type
   private
     { Private declarations }
   public
-    { Public declarations }
+    property Query1: TFDQuery read FDQuery1;
   end;
 
 var
@@ -48,22 +48,21 @@ implementation
 
 {$R *.dfm}
 
-uses unitDM, unitCadastroSocio, unitCadastroDependente, unitManagerSocio;
+uses unitDM, unitCadastroSocio, unitCadastroDependente, unitManagerSocio, unitBaixaMensalidade;
+
+
 
 procedure TForm1.DBGrid1DblClick(Sender: TObject);
+var
+  Form5: TForm5;
 begin
    if DBGrid1.SelectedRows.CurrentRowSelected then
 begin
-    if (FDQuery1.Active) then
-    begin
-      // Use FieldByName para acessar o valor da coluna "id"
-      ShowMessage('Valor da coluna "id": ' + FDQuery1.FieldByName('id').AsString);
-    end;
-end
-else
-begin
-
-  ShowMessage('Nenhuma linha selecionada.');
+  Form5 := TForm5.Create(Application);
+  Form5.DataVencimento := FDQuery1.FieldByName('datavencimento').AsDateTime;
+  Form5.Valor := FDQuery1.FieldByName('valor').AsFloat;
+  Form5.ID := FDQuery1.FieldByName('id_1').Value;
+  Form5.ShowModal;
 end;
 end;
 
