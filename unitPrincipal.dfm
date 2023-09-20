@@ -36,6 +36,7 @@ object Form1: TForm1
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
         OnDrawColumnCell = DBGrid1DrawColumnCell
+        OnDblClick = DBGrid1DblClick
         Columns = <
           item
             Alignment = taCenter

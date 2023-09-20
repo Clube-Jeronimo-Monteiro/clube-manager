@@ -34,6 +34,7 @@ type
     procedure Socio3Click(Sender: TObject);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure DBGrid1DblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -48,6 +49,23 @@ implementation
 {$R *.dfm}
 
 uses unitDM, unitCadastroSocio, unitCadastroDependente, unitManagerSocio;
+
+procedure TForm1.DBGrid1DblClick(Sender: TObject);
+begin
+   if DBGrid1.SelectedRows.CurrentRowSelected then
+begin
+    if (FDQuery1.Active) then
+    begin
+      // Use FieldByName para acessar o valor da coluna "id"
+      ShowMessage('Valor da coluna "id": ' + FDQuery1.FieldByName('id').AsString);
+    end;
+end
+else
+begin
+
+  ShowMessage('Nenhuma linha selecionada.');
+end;
+end;
 
 procedure TForm1.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: Integer; Column: TColumn; State: TGridDrawState);
