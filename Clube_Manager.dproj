@@ -119,6 +119,10 @@
             <Form>Form4</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="unitBaixaMensalidade.pas">
+            <Form>Form5</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
