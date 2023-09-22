@@ -49,41 +49,44 @@ object Form1: TForm1
           item
             Expanded = False
             FieldName = 'telefone'
+            Title.Caption = 'Telefone'
+            Width = 120
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'id_1'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'socioid'
-            Visible = True
+            Visible = False
           end
           item
             Expanded = False
             FieldName = 'datapagamento'
+            Title.Caption = 'Data de Pagamento'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'valor'
+            Title.Caption = 'Valor Mensalidade'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'valorpago'
+            Title.Caption = 'Valor Pago'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'datavencimento'
+            Title.Caption = 'Data de Vencimento'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'status'
+            Title.Caption = 'Status'
+            Width = 100
             Visible = True
           end>
       end
@@ -94,8 +97,8 @@ object Form1: TForm1
     end
   end
   object MainMenu1: TMainMenu
-    Left = 324
-    Top = 66
+    Left = 36
+    Top = 58
     object Cadastrar1: TMenuItem
       Caption = 'Cadastrar'
       object Socio1: TMenuItem
@@ -124,8 +127,8 @@ object Form1: TForm1
       'DriverID=MySQL')
     Connected = True
     LoginPrompt = False
-    Left = 704
-    Top = 48
+    Left = 616
+    Top = 232
   end
   object FDTableMensalidade: TFDTable
     Active = True
@@ -134,13 +137,13 @@ object Form1: TForm1
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     CatalogName = 'clube-dev'
     TableName = 'mensalidade'
-    Left = 588
-    Top = 50
+    Left = 508
+    Top = 242
   end
   object DSMensalidade: TDataSource
     DataSet = FDQuery1
-    Left = 816
-    Top = 48
+    Left = 712
+    Top = 232
   end
   object FDQuery1: TFDQuery
     Active = True
@@ -149,8 +152,8 @@ object Form1: TForm1
       
         'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  `codSoc' +
         'io`')
-    Left = 492
-    Top = 58
+    Left = 172
+    Top = 242
   end
   object FDQuery2: TFDQuery
     Active = True
@@ -160,18 +163,18 @@ object Form1: TForm1
       
         'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  `codSoc' +
         'io`')
-    Left = 404
-    Top = 74
+    Left = 108
+    Top = 242
   end
   object FDTable1: TFDTable
     Connection = dbConnection
     TableName = 'mensalidade'
-    Left = 308
-    Top = 218
+    Left = 332
+    Top = 202
   end
   object DSTabelaMensalidade: TDataSource
     DataSet = FDQuery2
-    Left = 808
-    Top = 224
+    Left = 712
+    Top = 288
   end
 end
