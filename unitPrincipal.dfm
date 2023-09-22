@@ -26,7 +26,7 @@ object Form1: TForm1
         Top = 80
         Width = 1250
         Height = 639
-        DataSource = DSMensalidade
+        DataSource = DSTabelaMensalidade
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
         ReadOnly = True
         TabOrder = 0
@@ -157,5 +157,24 @@ object Form1: TForm1
         'io`')
     Left = 492
     Top = 58
+  end
+  object FDQuery2: TFDQuery
+    Active = True
+    Connection = dbConnection
+    SQL.Strings = (
+      'SELECT * FROM mensalidade')
+    Left = 404
+    Top = 74
+  end
+  object FDTable1: TFDTable
+    Connection = dbConnection
+    TableName = 'mensalidade'
+    Left = 308
+    Top = 218
+  end
+  object DSTabelaMensalidade: TDataSource
+    DataSet = FDQuery2
+    Left = 808
+    Top = 224
   end
 end
