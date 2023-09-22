@@ -93,19 +93,17 @@ object Form5: TForm5
     end
     object Edit1: TEdit
       Left = 16
-      Top = 104
+      Top = 46
       Width = 185
       Height = 23
       TabOrder = 0
-      Text = 'Edit1'
     end
     object Edit2: TEdit
       Left = 16
-      Top = 48
+      Top = 104
       Width = 185
       Height = 23
       TabOrder = 1
-      Text = 'Edit1'
     end
   end
 end
