@@ -41,11 +41,11 @@ procedure TForm5.Button1Click(Sender: TObject);
 begin
   Form1.Query1.SQL.Text :=
   'UPDATE mensalidade ' +
-  'SET status = pendente, datapagamento = null, valorpago = null ' +
+  'SET status = :status , datapagamento = null, valorpago = null ' +
   'WHERE id = :id';
 
   Form1.Query1.Params.ParamByName('id').Value := ID;
-
+  Form1.Query1.Params.ParamByName('status').AsString := 'pendente';
   Form1.Query1.ExecSQL;
   ShowMessage('Mensalidade cancelada com Sucesso!');
   Form1.SelectMensalidade.Refresh;
@@ -58,7 +58,7 @@ begin
   'SET status = :status, datapagamento = :datapagamento, valorpago = :valorpago ' +
   'WHERE id = :id';
 
-  Form1.Query1.Params.ParamByName('status').AsString := 'pendente';
+  Form1.Query1.Params.ParamByName('status').AsString := 'pago';
   Form1.Query1.Params.ParamByName('datapagamento').AsDate := DateTimePicker2.Date;
   Form1.Query1.Params.ParamByName('valorpago').Value := StrToInt(Edit2.Text);
   Form1.Query1.Params.ParamByName('id').Value := ID;
