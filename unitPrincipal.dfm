@@ -39,57 +39,51 @@ object Form1: TForm1
         OnDblClick = DBGrid1DblClick
         Columns = <
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'nome'
             ImeName = 'Portuguese (Brazilian ABNT)'
-            Title.Alignment = taCenter
             Title.Caption = 'Socio'
             Width = 300
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
-            FieldName = 'datapagamento'
-            Title.Alignment = taCenter
-            Title.Caption = 'Data de Pagamento'
-            Width = 200
-            Visible = True
-          end
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'valor'
-            Title.Alignment = taCenter
-            Title.Caption = 'Valor'
-            Width = 200
-            Visible = True
-          end
-          item
-            Alignment = taCenter
-            Expanded = False
-            FieldName = 'valorpago'
-            Title.Alignment = taCenter
-            Title.Caption = 'Valor Pago'
-            Width = 200
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'datavencimento'
-            Title.Alignment = taCenter
-            Title.Caption = 'Data de Vencimento'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'status'
+            FieldName = 'telefone'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'id_1'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'socioid'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'datapagamento'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'valor'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'valorpago'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'datavencimento'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'status'
             Visible = True
           end>
       end
@@ -160,9 +154,12 @@ object Form1: TForm1
   end
   object FDQuery2: TFDQuery
     Active = True
+    MasterSource = DSMensalidade
     Connection = dbConnection
     SQL.Strings = (
-      'SELECT * FROM mensalidade')
+      
+        'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  `codSoc' +
+        'io`')
     Left = 404
     Top = 74
   end
