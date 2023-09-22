@@ -26,7 +26,9 @@ object Form1: TForm1
         Top = 80
         Width = 1250
         Height = 639
-        DataSource = DSMensalidade
+        DataSource = DSTabelaMensalidade
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
+        ReadOnly = True
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -34,6 +36,7 @@ object Form1: TForm1
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
         OnDrawColumnCell = DBGrid1DrawColumnCell
+        OnDblClick = DBGrid1DblClick
         Columns = <
           item
             Alignment = taCenter
@@ -75,23 +78,18 @@ object Form1: TForm1
           item
             Expanded = False
             FieldName = 'datavencimento'
-<<<<<<< HEAD
             Title.Alignment = taCenter
             Title.Caption = 'Data de Vencimento'
-=======
->>>>>>> 55295d1b19f347b9cd458a06ae979b364575c47f
             Visible = True
           end
           item
-            Alignment = taCenter
             Expanded = False
             FieldName = 'status'
-<<<<<<< HEAD
-            Title.Alignment = taCenter
-=======
->>>>>>> 55295d1b19f347b9cd458a06ae979b364575c47f
-            Title.Caption = 'Status'
-            Width = 235
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'id_1'
             Visible = True
           end>
       end
@@ -108,18 +106,15 @@ object Form1: TForm1
       Caption = 'Cadastrar'
       object Socio1: TMenuItem
         Caption = 'Socio'
-        OnClick = Socio1Click
       end
       object Socio2: TMenuItem
         Caption = 'Dependente'
-        OnClick = Socio2Click
       end
     end
     object Editar1: TMenuItem
       Caption = 'Editar'
       object Socio3: TMenuItem
         Caption = 'Socio'
-        OnClick = Socio3Click
       end
       object Dependente1: TMenuItem
         Caption = 'Dependente'
@@ -162,5 +157,24 @@ object Form1: TForm1
         'io`')
     Left = 492
     Top = 58
+  end
+  object FDQuery2: TFDQuery
+    Active = True
+    Connection = dbConnection
+    SQL.Strings = (
+      'SELECT * FROM mensalidade')
+    Left = 404
+    Top = 74
+  end
+  object FDTable1: TFDTable
+    Connection = dbConnection
+    TableName = 'mensalidade'
+    Left = 308
+    Top = 218
+  end
+  object DSTabelaMensalidade: TDataSource
+    DataSet = FDQuery2
+    Left = 808
+    Top = 224
   end
 end

@@ -6,7 +6,8 @@ uses
   unitDM in 'unitDM.pas' {DM: TDataModule},
   unitCadastroSocio in 'unitCadastroSocio.pas' {Form2},
   unitCadastroDependente in 'unitCadastroDependente.pas' {Form3},
-  unitManagerSocio in 'unitManagerSocio.pas' {Form4};
+  unitManagerSocio in 'unitManagerSocio.pas' {Form4},
+  unitBaixaMensalidade in 'unitBaixaMensalidade.pas' {Form5};
 
 {$R *.res}
 
@@ -18,5 +19,6 @@ begin
   Application.CreateForm(TForm2, Form2);
   Application.CreateForm(TForm3, Form3);
   Application.CreateForm(TForm4, Form4);
+  Application.CreateForm(TForm5, Form5);
   Application.Run;
 end.
