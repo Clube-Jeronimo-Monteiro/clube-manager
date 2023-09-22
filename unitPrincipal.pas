@@ -42,6 +42,7 @@ type
     { Private declarations }
   public
     property Query1: TFDQuery read FDQuery1;
+    property SelectMensalidade: TFDQuery read FDQuery2;
   end;
 
 var
@@ -62,9 +63,9 @@ begin
    if DBGrid1.SelectedRows.CurrentRowSelected then
 begin
   Form5 := TForm5.Create(Application);
-  Form5.DataVencimento := FDQuery1.FieldByName('datavencimento').AsDateTime;
-  Form5.Valor := FDQuery1.FieldByName('valor').AsFloat;
-  Form5.ID := FDQuery1.FieldByName('id_1').Value;
+  Form5.DataVencimento := FDQuery2.FieldByName('datavencimento').AsDateTime;
+  Form5.Valor := FDQuery2.FieldByName('valor').AsFloat;
+  Form5.ID := FDQuery2.FieldByName('id').Value;
   Form5.ShowModal;
 end;
 end;
@@ -76,12 +77,12 @@ var
 begin
 
 // Verifica se o campo na coluna é nulo
-  if (Column.FieldName = 'status') and (DSMensalidade.DataSet.FieldByName('status').AsString = 'pendente') then
+  if (Column.FieldName = 'status') and (DSTabelaMensalidade.DataSet.FieldByName('status').AsString = 'pendente') then
   begin
     DBGrid1.Canvas.Brush.Color := clYellow; // Define a cor laranja
     DBGrid1.Canvas.Font.Color := clBlack;   // Define a cor do texto (opcional)
   end;
-  if (Column.FieldName = 'status') and (DSMensalidade.DataSet.FieldByName('status').AsString = 'pago') then
+  if (Column.FieldName = 'status') and (DSTabelaMensalidade.DataSet.FieldByName('status').AsString = 'pago') then
   begin
     DBGrid1.Canvas.Brush.Color := clGreen; // Define a cor laranja
     DBGrid1.Canvas.Font.Color := clBlack;   // Define a cor do texto (opcional)
@@ -89,7 +90,7 @@ begin
   if Column.FieldName = 'status' then
   begin
     CurrentDate := Now;
-    CellDate := DSMensalidade.DataSet.FieldByName('datavencimento').AsDateTime;
+    CellDate := DSTabelaMensalidade.DataSet.FieldByName('datavencimento').AsDateTime;
     if (CurrentDate > CellDate) and (DSMensalidade.DataSet.FieldByName('status').AsString = 'pendente') then
     begin
       DBGrid1.Canvas.Brush.Color := clRed; // Define a cor vermelha
