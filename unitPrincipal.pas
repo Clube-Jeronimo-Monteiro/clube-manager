@@ -34,6 +34,8 @@ type
     DSTabelaMensalidade: TDataSource;
     Button1: TButton;
     GerarMensalidade: TFDQuery;
+    dateInterval: TDateTimePicker;
+    Label1: TLabel;
     procedure Socio1Click(Sender: TObject);
     procedure Socio2Click(Sender: TObject);
     procedure Socio3Click(Sender: TObject);
@@ -42,6 +44,7 @@ type
     procedure DBGrid1DblClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
+    procedure dateIntervalCloseUp(Sender: TObject);
   private
     { Private declarations }
   public
@@ -70,6 +73,20 @@ begin
   ShowMessage('Mensalidades do mes geradas');
   FDQuery2.Refresh;
 End;
+
+procedure TForm1.dateIntervalCloseUp(Sender: TObject);
+var
+  dataSelecionada : TDate;
+  dataFormatada : String;
+begin
+  dataSelecionada := dateInterval.Date;
+  dataFormatada := FormatDateTime('yyyy-mm-dd', dataSelecionada);
+  FDQuery2.Close;
+  FDQuery2.SQL.Clear;
+  FDQuery2.SQL.Add('SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` = socio.id WHERE mensalidade.datavencimento >= :date');
+  FDQuery2.Params.ParamByName('date').Value := dataFormatada;
+  FDQuery2.Open;
+end;
 
 procedure TForm1.DBGrid1DblClick(Sender: TObject);
 var
