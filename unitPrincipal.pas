@@ -41,6 +41,7 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure DBGrid1TitleClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -89,33 +90,57 @@ procedure TForm1.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
 var
   CurrentDate, CellDate: TDateTime;
 begin
+ if (Column.FieldName = 'status') then
+begin
+  if DSTabelaMensalidade.DataSet.FieldByName('status').IsNull then
+  begin
+    // Trate o caso em que o campo 'status' está vazio (NULL)
+    DBGrid1.Canvas.Brush.Color := clWhite; // Define a cor padrão
+    DBGrid1.Canvas.Font.Color := clBlack;   // Define a cor do texto (opcional)
+  end
+  else if DSTabelaMensalidade.DataSet.FieldByName('status').AsString = 'pendente' then
+  begin
+    DBGrid1.Canvas.Brush.Color := clYellow; // Define a cor amarela
+    DBGrid1.Canvas.Font.Color := clBlack;   // Define a cor do texto (opcional)
+  end
+  else if DSTabelaMensalidade.DataSet.FieldByName('status').AsString = 'pago' then
+  begin
+    DBGrid1.Canvas.Brush.Color := clGreen; // Define a cor verde
+    DBGrid1.Canvas.Font.Color := clBlack;   // Define a cor do texto (opcional)
+  end;
+end;
 
-// Verifica se o campo na coluna é nulo
-  if (Column.FieldName = 'status') and (DSTabelaMensalidade.DataSet.FieldByName('status').AsString = 'pendente') then
+if (Column.FieldName = 'status') then
+begin
+  CurrentDate := Now;
+  CellDate := DSTabelaMensalidade.DataSet.FieldByName('datavencimento').AsDateTime;
+  if (CurrentDate > CellDate) and (DSTabelaMensalidade.DataSet.FieldByName('status').AsString = 'pendente') then
   begin
-    DBGrid1.Canvas.Brush.Color := clYellow; // Define a cor laranja
-    DBGrid1.Canvas.Font.Color := clBlack;   // Define a cor do texto (opcional)
+    DBGrid1.Canvas.Brush.Color := clRed; // Define a cor vermelha
+    DBGrid1.Canvas.Font.Color := clWhite; // Define a cor do texto (opcional)
   end;
-  if (Column.FieldName = 'status') and (DSTabelaMensalidade.DataSet.FieldByName('status').AsString = 'pago') then
+end;
+
+DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+end;
+
+procedure TForm1.DBGrid1TitleClick(Column: TColumn);
+begin
+try
+  if Assigned(Column.Field) then
   begin
-    DBGrid1.Canvas.Brush.Color := clGreen; // Define a cor laranja
-    DBGrid1.Canvas.Font.Color := clBlack;   // Define a cor do texto (opcional)
-  end;
-  if Column.FieldName = 'status' then
-  begin
-    CurrentDate := Now;
-    CellDate := DSTabelaMensalidade.DataSet.FieldByName('datavencimento').AsDateTime;
-    if (CurrentDate > CellDate) and (DSMensalidade.DataSet.FieldByName('status').AsString = 'pendente') then
+    if Column.Field.DataType in [ftString, ftInteger, ftDate, ftFloat] then
     begin
-      DBGrid1.Canvas.Brush.Color := clRed; // Define a cor vermelha
-      DBGrid1.Canvas.Font.Color := clWhite; // Define a cor do texto (opcional)
+      if FDQuery2.IndexFieldNames = Column.FieldName then
+        FDQuery2.IndexFieldNames := Column.FieldName + ' DESC'
+      else
+        FDQuery2.IndexFieldNames := Column.FieldName;
     end;
   end;
-
-
-  // Desenha a célula
-  DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+  except
+  end;
 end;
+
 
 procedure TForm1.Socio1Click(Sender: TObject);
 begin

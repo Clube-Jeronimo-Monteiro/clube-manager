@@ -37,6 +37,7 @@ object Form1: TForm1
         TitleFont.Style = []
         OnDrawColumnCell = DBGrid1DrawColumnCell
         OnDblClick = DBGrid1DblClick
+        OnTitleClick = DBGrid1TitleClick
         Columns = <
           item
             Alignment = taCenter
@@ -154,8 +155,8 @@ object Form1: TForm1
       'DriverID=MySQL')
     Connected = True
     LoginPrompt = False
-    Left = 616
-    Top = 232
+    Left = 744
+    Top = 32
   end
   object FDTableMensalidade: TFDTable
     IndexFieldNames = 'id'
@@ -163,13 +164,13 @@ object Form1: TForm1
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     CatalogName = 'clube-dev'
     TableName = 'mensalidade'
-    Left = 508
-    Top = 242
+    Left = 604
+    Top = 34
   end
   object DSMensalidade: TDataSource
     DataSet = FDQuery1
-    Left = 712
-    Top = 232
+    Left = 848
+    Top = 32
   end
   object FDQuery1: TFDQuery
     Active = True
@@ -178,8 +179,8 @@ object Form1: TForm1
       
         'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  `codSoc' +
         'io`')
-    Left = 172
-    Top = 242
+    Left = 356
+    Top = 34
   end
   object FDQuery2: TFDQuery
     Active = True
@@ -189,19 +190,19 @@ object Form1: TForm1
       
         'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  socio.i' +
         'd')
-    Left = 108
-    Top = 242
+    Left = 388
+    Top = 34
   end
   object FDTable1: TFDTable
     Connection = dbConnection
     TableName = 'mensalidade'
-    Left = 332
-    Top = 202
+    Left = 476
+    Top = 34
   end
   object DSTabelaMensalidade: TDataSource
     DataSet = FDQuery2
-    Left = 712
-    Top = 288
+    Left = 880
+    Top = 32
   end
   object GerarMensalidade: TFDQuery
     Connection = dbConnection
@@ -211,7 +212,7 @@ object Form1: TForm1
         ' '
       'SELECT id,'#39'2023-10-15'#39', 80, '#39'pendente'#39' '
       'FROM socio')
-    Left = 372
-    Top = 354
+    Left = 420
+    Top = 34
   end
 end
