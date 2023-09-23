@@ -32,12 +32,15 @@ type
     FDQuery2: TFDQuery;
     FDTable1: TFDTable;
     DSTabelaMensalidade: TDataSource;
+    Button1: TButton;
+    GerarMensalidade: TFDQuery;
     procedure Socio1Click(Sender: TObject);
     procedure Socio2Click(Sender: TObject);
     procedure Socio3Click(Sender: TObject);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure DBGrid1DblClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,9 +55,20 @@ implementation
 
 {$R *.dfm}
 
-uses unitDM, unitCadastroSocio, unitCadastroDependente, unitManagerSocio, unitBaixaMensalidade;
+uses unitDM, unitCadastroSocio, unitCadastroDependente, unitManagerSocio, unitBaixaMensalidade, DateUtils;
 
 
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  GerarMensalidade.SQL.Text := 'INSERT INTO mensalidade (socioid, datavencimento, valor, status) SELECT id, :Data, :Valor, :Status FROM socio';
+  GerarMensalidade.Params.ParamByName('data').AsDate := EncodeDate(YearOf(Now), MonthOf(Now), 15);
+  GerarMensalidade.Params.ParamByName('valor').Value := 80;
+  GerarMensalidade.Params.ParamByName('status').AsString := 'pendente';
+  GerarMensalidade.ExecSQL;
+  ShowMessage('Mensalidades do mes geradas');
+  FDQuery2.Refresh;
+End;
 
 procedure TForm1.DBGrid1DblClick(Sender: TObject);
 var

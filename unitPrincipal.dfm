@@ -68,6 +68,7 @@ object Form1: TForm1
             FieldName = 'datapagamento'
             Title.Alignment = taCenter
             Title.Caption = 'Data de Pagamento'
+            Width = 173
             Visible = True
           end
           item
@@ -76,6 +77,7 @@ object Form1: TForm1
             FieldName = 'valor'
             Title.Alignment = taCenter
             Title.Caption = 'Valor Mensalidade'
+            Width = 157
             Visible = True
           end
           item
@@ -84,6 +86,7 @@ object Form1: TForm1
             FieldName = 'valorpago'
             Title.Alignment = taCenter
             Title.Caption = 'Valor Pago'
+            Width = 138
             Visible = True
           end
           item
@@ -92,6 +95,7 @@ object Form1: TForm1
             FieldName = 'datavencimento'
             Title.Alignment = taCenter
             Title.Caption = 'Data de Vencimento'
+            Width = 119
             Visible = True
           end
           item
@@ -100,9 +104,18 @@ object Form1: TForm1
             FieldName = 'status'
             Title.Alignment = taCenter
             Title.Caption = 'Pagamento'
-            Width = 100
+            Width = 201
             Visible = True
           end>
+      end
+      object Button1: TButton
+        Left = 16
+        Top = 24
+        Width = 297
+        Height = 33
+        Caption = 'Gerar Mensalidades'
+        TabOrder = 1
+        OnClick = Button1Click
       end
     end
     object TabSheet2: TTabSheet
@@ -145,7 +158,6 @@ object Form1: TForm1
     Top = 232
   end
   object FDTableMensalidade: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
@@ -175,8 +187,8 @@ object Form1: TForm1
     Connection = dbConnection
     SQL.Strings = (
       
-        'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  `codSoc' +
-        'io`')
+        'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  socio.i' +
+        'd')
     Left = 108
     Top = 242
   end
@@ -190,5 +202,16 @@ object Form1: TForm1
     DataSet = FDQuery2
     Left = 712
     Top = 288
+  end
+  object GerarMensalidade: TFDQuery
+    Connection = dbConnection
+    SQL.Strings = (
+      
+        'INSERT INTO mensalidade (socioid, datavencimento, valor, status)' +
+        ' '
+      'SELECT id,'#39'2023-10-15'#39', 80, '#39'pendente'#39' '
+      'FROM socio')
+    Left = 372
+    Top = 354
   end
 end
