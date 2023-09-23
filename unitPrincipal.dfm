@@ -39,16 +39,20 @@ object Form1: TForm1
         OnDblClick = DBGrid1DblClick
         Columns = <
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'nome'
             ImeName = 'Portuguese (Brazilian ABNT)'
+            Title.Alignment = taCenter
             Title.Caption = 'Socio'
             Width = 300
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'telefone'
+            Title.Alignment = taCenter
             Title.Caption = 'Telefone'
             Width = 120
             Visible = True
@@ -59,33 +63,43 @@ object Form1: TForm1
             Visible = False
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'datapagamento'
+            Title.Alignment = taCenter
             Title.Caption = 'Data de Pagamento'
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'valor'
+            Title.Alignment = taCenter
             Title.Caption = 'Valor Mensalidade'
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'valorpago'
+            Title.Alignment = taCenter
             Title.Caption = 'Valor Pago'
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'datavencimento'
+            Title.Alignment = taCenter
             Title.Caption = 'Data de Vencimento'
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'status'
-            Title.Caption = 'Status'
+            Title.Alignment = taCenter
+            Title.Caption = 'Pagamento'
             Width = 100
             Visible = True
           end>
