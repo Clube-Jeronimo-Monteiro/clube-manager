@@ -65,7 +65,7 @@ begin
   Form5 := TForm5.Create(Application);
   Form5.DataVencimento := FDQuery2.FieldByName('datavencimento').AsDateTime;
   Form5.Valor := FDQuery2.FieldByName('valor').AsFloat;
-  Form5.ID := FDQuery2.FieldByName('id').Value;
+  Form5.ID := FDQuery2.FieldByName('id_1').Value;
   Form5.ShowModal;
 end;
 end;

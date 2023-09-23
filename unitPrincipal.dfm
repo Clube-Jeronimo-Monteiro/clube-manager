@@ -51,10 +51,23 @@ object Form1: TForm1
           item
             Alignment = taCenter
             Expanded = False
+            FieldName = 'telefone'
+            Title.Alignment = taCenter
+            Title.Caption = 'Telefone'
+            Width = 120
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'id_1'
+            Visible = False
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
             FieldName = 'datapagamento'
             Title.Alignment = taCenter
             Title.Caption = 'Data de Pagamento'
-            Width = 200
             Visible = True
           end
           item
@@ -62,8 +75,7 @@ object Form1: TForm1
             Expanded = False
             FieldName = 'valor'
             Title.Alignment = taCenter
-            Title.Caption = 'Valor'
-            Width = 200
+            Title.Caption = 'Valor Mensalidade'
             Visible = True
           end
           item
@@ -72,10 +84,10 @@ object Form1: TForm1
             FieldName = 'valorpago'
             Title.Alignment = taCenter
             Title.Caption = 'Valor Pago'
-            Width = 200
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'datavencimento'
             Title.Alignment = taCenter
@@ -83,13 +95,12 @@ object Form1: TForm1
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'status'
-            Visible = True
-          end
-          item
-            Expanded = False
-            FieldName = 'id_1'
+            Title.Alignment = taCenter
+            Title.Caption = 'Pagamento'
+            Width = 100
             Visible = True
           end>
       end
@@ -100,8 +111,8 @@ object Form1: TForm1
     end
   end
   object MainMenu1: TMainMenu
-    Left = 324
-    Top = 66
+    Left = 36
+    Top = 58
     object Cadastrar1: TMenuItem
       Caption = 'Cadastrar'
       object Socio1: TMenuItem
@@ -130,8 +141,8 @@ object Form1: TForm1
       'DriverID=MySQL')
     Connected = True
     LoginPrompt = False
-    Left = 704
-    Top = 48
+    Left = 616
+    Top = 232
   end
   object FDTableMensalidade: TFDTable
     Active = True
@@ -140,13 +151,13 @@ object Form1: TForm1
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     CatalogName = 'clube-dev'
     TableName = 'mensalidade'
-    Left = 588
-    Top = 50
+    Left = 508
+    Top = 242
   end
   object DSMensalidade: TDataSource
     DataSet = FDQuery1
-    Left = 816
-    Top = 48
+    Left = 712
+    Top = 232
   end
   object FDQuery1: TFDQuery
     Active = True
@@ -155,26 +166,29 @@ object Form1: TForm1
       
         'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  `codSoc' +
         'io`')
-    Left = 492
-    Top = 58
+    Left = 172
+    Top = 242
   end
   object FDQuery2: TFDQuery
     Active = True
+    MasterSource = DSMensalidade
     Connection = dbConnection
     SQL.Strings = (
-      'SELECT * FROM mensalidade')
-    Left = 404
-    Top = 74
+      
+        'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  `codSoc' +
+        'io`')
+    Left = 108
+    Top = 242
   end
   object FDTable1: TFDTable
     Connection = dbConnection
     TableName = 'mensalidade'
-    Left = 308
-    Top = 218
+    Left = 332
+    Top = 202
   end
   object DSTabelaMensalidade: TDataSource
     DataSet = FDQuery2
-    Left = 808
-    Top = 224
+    Left = 712
+    Top = 288
   end
 end
