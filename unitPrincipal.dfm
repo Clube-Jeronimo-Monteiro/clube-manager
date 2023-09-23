@@ -21,6 +21,13 @@ object Form1: TForm1
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Mensalidades'
+      object Label1: TLabel
+        Left = 336
+        Top = 3
+        Width = 89
+        Height = 15
+        Caption = 'Intervalo de Data'
+      end
       object DBGrid1: TDBGrid
         Left = 3
         Top = 80
@@ -118,6 +125,17 @@ object Form1: TForm1
         TabOrder = 1
         OnClick = Button1Click
       end
+      object dateInterval: TDateTimePicker
+        Left = 336
+        Top = 24
+        Width = 209
+        Height = 33
+        Date = 45192.000000000000000000
+        Time = 0.391853078705025800
+        ImeName = 'Portuguese (Brazilian ABNT)'
+        TabOrder = 2
+        OnCloseUp = dateIntervalCloseUp
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'Exames de Pele'
@@ -179,8 +197,8 @@ object Form1: TForm1
       
         'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  `codSoc' +
         'io`')
-    Left = 356
-    Top = 34
+    Left = 756
+    Top = 82
   end
   object FDQuery2: TFDQuery
     Active = True
@@ -190,14 +208,14 @@ object Form1: TForm1
       
         'SELECT * FROM `socio` JOIN `mensalidade` ON `socioid` =  socio.i' +
         'd')
-    Left = 388
-    Top = 34
+    Left = 700
+    Top = 74
   end
   object FDTable1: TFDTable
     Connection = dbConnection
     TableName = 'mensalidade'
-    Left = 476
-    Top = 34
+    Left = 668
+    Top = 74
   end
   object DSTabelaMensalidade: TDataSource
     DataSet = FDQuery2
@@ -212,7 +230,7 @@ object Form1: TForm1
         ' '
       'SELECT id,'#39'2023-10-15'#39', 80, '#39'pendente'#39' '
       'FROM socio')
-    Left = 420
-    Top = 34
+    Left = 612
+    Top = 82
   end
 end
