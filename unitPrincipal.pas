@@ -65,10 +65,6 @@ uses unitDM, unitCadastroSocio, unitCadastroDependente, unitManagerSocio, unitBa
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  GerarMensalidade.SQL.Text := 'INSERT INTO mensalidade (socioid, datavencimento, valor, status) SELECT id, :Data, :Valor, :Status FROM socio';
-  GerarMensalidade.Params.ParamByName('data').AsDate := EncodeDate(YearOf(Now), MonthOf(Now), 15);
-  GerarMensalidade.Params.ParamByName('valor').Value := 80;
-  GerarMensalidade.Params.ParamByName('status').AsString := 'pendente';
   GerarMensalidade.ExecSQL;
   ShowMessage('Mensalidades do mes geradas');
   FDQuery2.Refresh;
