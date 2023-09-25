@@ -1,7 +1,7 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Form3'
+  Caption = 'Cadastro de Dependente'
   ClientHeight = 433
   ClientWidth = 338
   Color = clBtnFace
