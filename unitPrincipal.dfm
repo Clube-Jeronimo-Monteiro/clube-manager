@@ -228,15 +228,20 @@ object Form1: TForm1
     Connection = dbConnection
     SQL.Strings = (
       'INSERT INTO mensalidade (socioid, datavencimento, valor, status)'
-      'SELECT s.id, DATE_FORMAT(NOW(), '#39'%Y-%m-15'#39'), 80, '#39'pendente'#39
+      'SELECT s.id, '
+      
+        '       DATE_ADD(DATE_ADD(LAST_DAY(CURRENT_DATE), INTERVAL 1 DAY)' +
+        ', INTERVAL -1 MONTH) AS datavencimento,'
+      '       80, '
+      '       '#39'pendente'#39
       'FROM socio AS s'
       'WHERE NOT EXISTS ('
       '    SELECT 1'
       '    FROM mensalidade AS m'
       '    WHERE m.socioid = s.id'
       
-        '    AND EXTRACT(YEAR_MONTH FROM m.datavencimento) = DATE_FORMAT(' +
-        'NOW(), '#39'%Y-%m'#39')'
+        '    AND EXTRACT(YEAR_MONTH FROM m.datavencimento) = EXTRACT(YEAR' +
+        '_MONTH FROM CURRENT_DATE)'
       ');'
       '')
     Left = 612
