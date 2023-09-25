@@ -1,6 +1,7 @@
 object Form2: TForm2
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = 'Cadastro de Socio'
   ClientHeight = 409
   ClientWidth = 339
@@ -10,12 +11,13 @@ object Form2: TForm2
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poMainFormCenter
   TextHeight = 15
   object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 337
-    Height = 409
+    Left = 8
+    Top = 8
+    Width = 323
+    Height = 393
     TabOrder = 0
     object GroupBox1: TGroupBox
       Left = 16
@@ -109,14 +111,14 @@ object Form2: TForm2
       object EDBairro: TEdit
         Left = 16
         Top = 37
-        Width = 121
+        Width = 249
         Height = 23
         TabOrder = 0
       end
       object EDRua: TEdit
         Left = 16
         Top = 85
-        Width = 121
+        Width = 249
         Height = 23
         ImeName = 'Portuguese (Brazilian ABNT)'
         TabOrder = 1
@@ -124,7 +126,7 @@ object Form2: TForm2
       object EDNumero: TEdit
         Left = 16
         Top = 135
-        Width = 121
+        Width = 249
         Height = 23
         ImeName = 'Portuguese (Brazilian ABNT)'
         TabOrder = 2

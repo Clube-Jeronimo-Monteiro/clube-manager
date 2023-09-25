@@ -1,7 +1,7 @@
 object Form5: TForm5
   Left = 0
   Top = 0
-  Caption = 'Form5'
+  Caption = 'Controle de Mensalidade'
   ClientHeight = 234
   ClientWidth = 452
   Color = clBtnFace

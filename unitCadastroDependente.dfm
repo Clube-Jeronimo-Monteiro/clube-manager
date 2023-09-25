@@ -1,8 +1,8 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Form3'
-  ClientHeight = 431
+  Caption = 'Cadastro de Dependente'
+  ClientHeight = 433
   ClientWidth = 338
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,12 +10,13 @@ object Form3: TForm3
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poMainFormCenter
   TextHeight = 15
   object Panel1: TPanel
-    Left = 0
-    Top = 0
-    Width = 337
-    Height = 433
+    Left = 8
+    Top = 8
+    Width = 322
+    Height = 417
     TabOrder = 0
     object Label3: TLabel
       Left = 16
@@ -55,7 +56,7 @@ object Form3: TForm3
     end
     object Button1: TButton
       Left = 16
-      Top = 392
+      Top = 377
       Width = 281
       Height = 33
       Caption = 'Cadastrar'
