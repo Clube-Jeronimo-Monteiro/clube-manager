@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, FireDAC.UI.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
-  FireDAC.Phys, FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait;
+  FireDAC.Phys, FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait, unitPrincipal;
 
 type
   TForm2 = class(TForm)
@@ -40,6 +40,7 @@ type
     tbSocionumero: TStringField;
     dsSocio: TDataSource;
     FDQuery1: TFDQuery;
+    GerarExame: TFDQuery;
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -76,7 +77,13 @@ begin
   FDQuery1.ParamByName('DataVencimento').AsDate := EncodeDate(2023, 12, 15);
   FDQuery1.ExecSQL;
 
-  ShowMessage('Socio cadastrado com sucesso e mensalidade gerada!');
+  GerarExame.SQL.Clear();
+  GerarExame.SQL.Text := 'INSERT INTO examepele (datavencimento, nome) SELECT DATE_ADD(CURDATE(), INTERVAL 6 MONTH) AS datavencimento,     :Nome AS nome UNION ALL SELECT DATE_ADD(CURDATE(), INTERVAL 12 MONTH) AS datavencimento, :Nome AS nome;';
+  GerarExame.ParamByName('Nome').AsString := EDName.Text;
+  GerarExame.ExecSQL;
+
+  ShowMessage('Socio cadastrado com sucesso! Mensalidade e exames gerados');
+  Form1.FDExamesSQL.Refresh();
   Close;
 except
   on E: Exception do

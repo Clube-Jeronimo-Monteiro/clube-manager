@@ -36,6 +36,10 @@ type
     GerarMensalidade: TFDQuery;
     dateInterval: TDateTimePicker;
     Label1: TLabel;
+    DBGrid2: TDBGrid;
+    DSTabelaExames: TDataSource;
+    FDExames: TFDQuery;
+    GerarExames: TFDQuery;
     procedure Socio1Click(Sender: TObject);
     procedure Socio2Click(Sender: TObject);
     procedure Socio3Click(Sender: TObject);
@@ -49,6 +53,7 @@ type
     { Private declarations }
   public
     property Query1: TFDQuery read FDQuery1;
+    property FDExamesSQL: TFDQuery read FDExames;
     property SelectMensalidade: TFDQuery read FDQuery2;
   end;
 
@@ -65,9 +70,10 @@ uses unitDM, unitCadastroSocio, unitCadastroDependente, unitManagerSocio, unitBa
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  GerarMensalidade.ExecSQL;
-  ShowMessage('Mensalidades do mes geradas');
+  GerarExames.ExecSQL;
+  ShowMessage('Exames do mes geradas');
   FDQuery2.Refresh;
+  FDExames.Refresh;
 End;
 
 procedure TForm1.dateIntervalCloseUp(Sender: TObject);

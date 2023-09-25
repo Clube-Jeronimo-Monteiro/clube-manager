@@ -206,4 +206,12 @@ object Form2: TForm2
     Left = 303
     Top = 248
   end
+  object GerarExame: TFDQuery
+    Active = True
+    Connection = Conexao
+    SQL.Strings = (
+      'SELECT * FROM socio')
+    Left = 240
+    Top = 376
+  end
 end

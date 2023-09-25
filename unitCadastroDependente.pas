@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
   FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait, Vcl.StdCtrls, Vcl.ExtCtrls,
   Data.DB, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids, FireDAC.Stan.Param,
-  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet;
+  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, unitPrincipal;
 
 type
   TForm3 = class(TForm)
@@ -39,6 +39,7 @@ type
     FDQuery2: TFDQuery;
     Label3: TLabel;
     NomeSocio: TLabel;
+    GerarExame: TFDQuery;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure DBGrid1CellClick(Column: TColumn);
@@ -67,7 +68,12 @@ begin
       IDValue := DBGrid1.Fields[0].Value;
       FDQuery2.ParamByName('idSocio').AsInteger	:= IDValue;
       FDQuery2.ExecSQL;
-      ShowMessage('Dependente cadastrado com sucesso!');
+      ShowMessage('Dependente cadastrado com sucesso!, exames gerados automaticamente!');
+      GerarExame.SQL.Clear();
+      GerarExame.SQL.Text := 'INSERT INTO examepele (datavencimento, nome) SELECT DATE_ADD(CURDATE(), INTERVAL 6 MONTH) AS datavencimento,     :Nome AS nome UNION ALL SELECT DATE_ADD(CURDATE(), INTERVAL 12 MONTH) AS datavencimento, :Nome AS nome;';
+      GerarExame.ParamByName('Nome').AsString := EDNameDependente.Text;
+      GerarExame.ExecSQL;
+      Form1.FDExamesSQL.Refresh();
     end
     else
     begin

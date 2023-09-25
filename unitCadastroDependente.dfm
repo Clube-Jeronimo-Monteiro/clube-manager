@@ -216,4 +216,12 @@ object Form3: TForm3
     Left = 296
     Top = 144
   end
+  object GerarExame: TFDQuery
+    Active = True
+    Connection = Conexao
+    SQL.Strings = (
+      'SELECT * FROM dependente')
+    Left = 248
+    Top = 336
+  end
 end
