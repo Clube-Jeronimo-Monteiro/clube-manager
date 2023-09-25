@@ -156,13 +156,28 @@ end;
 
 
 procedure TForm1.Socio1Click(Sender: TObject);
+ var
+  CadastroUsuarioForm: TForm2;
 begin
-  Form2.ShowModal;
+  CadastroUsuarioForm := TForm2.Create(nil);
+  try
+    CadastroUsuarioForm.ShowModal;
+  finally
+    CadastroUsuarioForm.Free;
+  end;
 end;
 
+
 procedure TForm1.Socio2Click(Sender: TObject);
+ var
+  CadastroUsuarioForm: TForm3;
 begin
-  Form3.ShowModal;
+  CadastroUsuarioForm := TForm3.Create(nil);
+  try
+    CadastroUsuarioForm.ShowModal;
+  finally
+    CadastroUsuarioForm.Free;
+  end;
 end;
 
 procedure TForm1.Socio3Click(Sender: TObject);
