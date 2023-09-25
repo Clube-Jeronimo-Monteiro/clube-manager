@@ -1,6 +1,7 @@
 object Form2: TForm2
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = 'Cadastro de Socio'
   ClientHeight = 409
   ClientWidth = 339
