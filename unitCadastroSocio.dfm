@@ -54,6 +54,7 @@ object Form2: TForm2
         Height = 23
         ImeName = 'US'
         TabOrder = 0
+        OnKeyPress = EDNameKeyPress
       end
       object EDCodSocio: TEdit
         Left = 16
