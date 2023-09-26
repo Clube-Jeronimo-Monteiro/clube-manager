@@ -58,6 +58,7 @@ type
     property FDExamesSQL: TFDQuery read FDExames;
     property FDBaixaExame: TFDQuery read BaixaExame;
     property SelectMensalidade: TFDQuery read FDQuery2;
+    property FDGerarExames : TFDQuery read GerarExames;
   end;
 
 var
