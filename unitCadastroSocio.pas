@@ -41,6 +41,7 @@ type
     dsSocio: TDataSource;
     FDQuery1: TFDQuery;
     GerarExame: TFDQuery;
+    FDMensalidade: TFDQuery;
     procedure Button1Click(Sender: TObject);
     procedure EDNameKeyPress(Sender: TObject; var Key: Char);
   private
@@ -72,18 +73,12 @@ begin
 
   FDQuery1.ExecSQL;
 
-  FDQuery1.SQL.Text := 'INSERT INTO mensalidade (socioid, valor, datavencimento) VALUES (:SocioId, :Valor, :DataVencimento)';
-  FDQuery1.ParamByName('SocioId').AsInteger := StrToInt(EDCodSocio.Text);
-  FDQuery1.ParamByName('Valor').AsFloat := 80.0;
-  FDQuery1.ParamByName('DataVencimento').AsDate := EncodeDate(2023, 12, 15);
-  FDQuery1.ExecSQL;
-
   GerarExame.SQL.Clear();
   GerarExame.SQL.Text := 'INSERT INTO examepele (datavencimento, nome) SELECT DATE_ADD(CURDATE(), INTERVAL 6 MONTH) AS datavencimento,     :Nome AS nome UNION ALL SELECT DATE_ADD(CURDATE(), INTERVAL 12 MONTH) AS datavencimento, :Nome AS nome;';
   GerarExame.ParamByName('Nome').AsString := EDName.Text;
   GerarExame.ExecSQL;
 
-  ShowMessage('Socio cadastrado com sucesso! Mensalidade e exames gerados');
+  ShowMessage('Socio cadastrado!');
   Form1.FDExamesSQL.Refresh();
   Close;
 except
@@ -100,7 +95,14 @@ except
   end;
 end;
 
+   try
+     Form1.GerarExames.ExecSQL;
+     Form1.FDQuery2.Refresh;
+     Form1.FDExames.Refresh;
+     ShowMessage('Mensalidade gerada!');
+   finally
 
+   end;
 
 end;
 

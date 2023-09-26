@@ -145,8 +145,8 @@ object Form2: TForm2
       'DriverID=MySQL')
     Connected = True
     LoginPrompt = False
-    Left = 304
-    Top = 128
+    Left = 312
+    Top = 288
   end
   object tbSocio: TFDTable
     Active = True
@@ -156,7 +156,7 @@ object Form2: TForm2
     CatalogName = 'clube-dev'
     TableName = '`clube-dev`.socio'
     Left = 304
-    Top = 320
+    Top = 384
     object tbSocioid: TFDAutoIncField
       FieldName = 'id'
       Origin = 'id'
@@ -201,20 +201,28 @@ object Form2: TForm2
   end
   object dsSocio: TDataSource
     DataSet = tbSocio
-    Left = 304
-    Top = 192
+    Left = 312
+    Top = 320
   end
   object FDQuery1: TFDQuery
     Connection = Conexao
-    Left = 303
-    Top = 248
+    Left = 311
+    Top = 352
   end
   object GerarExame: TFDQuery
     Active = True
     Connection = Conexao
     SQL.Strings = (
       'SELECT * FROM socio')
-    Left = 240
-    Top = 376
+    Left = 272
+    Top = 384
+  end
+  object FDMensalidade: TFDQuery
+    ChangeAlertName = 'FDMensalidade'
+    Connection = Conexao
+    SQL.Strings = (
+      'SELECT * FROM socio')
+    Left = 239
+    Top = 384
   end
 end
