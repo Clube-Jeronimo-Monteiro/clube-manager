@@ -40,6 +40,7 @@ type
     DSTabelaExames: TDataSource;
     FDExames: TFDQuery;
     GerarExames: TFDQuery;
+    BaixaExame: TFDQuery;
     procedure Socio1Click(Sender: TObject);
     procedure Socio2Click(Sender: TObject);
     procedure Socio3Click(Sender: TObject);
@@ -49,11 +50,13 @@ type
     procedure Button1Click(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
     procedure dateIntervalCloseUp(Sender: TObject);
+    procedure DBGrid2DblClick(Sender: TObject);
   private
     { Private declarations }
   public
     property Query1: TFDQuery read FDQuery1;
     property FDExamesSQL: TFDQuery read FDExames;
+    property FDBaixaExame: TFDQuery read BaixaExame;
     property SelectMensalidade: TFDQuery read FDQuery2;
   end;
 
@@ -64,7 +67,7 @@ implementation
 
 {$R *.dfm}
 
-uses unitDM, unitCadastroSocio, unitCadastroDependente, unitManagerSocio, unitBaixaMensalidade, DateUtils;
+uses unitDM, unitCadastroSocio, unitCadastroDependente, unitManagerSocio, unitBaixaMensalidade, unitBaixaExame, DateUtils;
 
 
 
@@ -160,6 +163,20 @@ try
   end;
 end;
 
+
+procedure TForm1.DBGrid2DblClick(Sender: TObject);
+var
+  Form6: TForm6;
+begin
+   if DBGrid2.SelectedRows.CurrentRowSelected then
+begin
+  Form6 := TForm6.Create(Application);
+  Form6.DataVencimento := FDExames.FieldByName('datavencimento').AsDateTime;
+  Form6.ID := FDExames.FieldByName('id').Value;
+  Form6.ShowModal;
+end;
+
+end;
 
 procedure TForm1.Socio1Click(Sender: TObject);
  var

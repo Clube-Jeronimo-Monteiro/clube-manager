@@ -155,7 +155,7 @@ object Form1: TForm1
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
         OnDrawColumnCell = DBGrid1DrawColumnCell
-        OnDblClick = DBGrid1DblClick
+        OnDblClick = DBGrid2DblClick
         OnTitleClick = DBGrid1TitleClick
         Columns = <
           item
@@ -329,5 +329,13 @@ object Form1: TForm1
       '')
     Left = 604
     Top = 226
+  end
+  object BaixaExame: TFDQuery
+    Active = True
+    Connection = dbConnection
+    SQL.Strings = (
+      'SELECT  * from examepele')
+    Left = 628
+    Top = 362
   end
 end
