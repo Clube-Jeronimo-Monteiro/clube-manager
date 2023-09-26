@@ -17,7 +17,7 @@ object Form1: TForm1
     Top = 8
     Width = 1264
     Height = 752
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Mensalidades'
@@ -140,6 +140,52 @@ object Form1: TForm1
     object TabSheet2: TTabSheet
       Caption = 'Exames de Pele'
       ImageIndex = 1
+      object DBGrid2: TDBGrid
+        Left = 6
+        Top = 83
+        Width = 1250
+        Height = 639
+        DataSource = DSTabelaExames
+        Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
+        ReadOnly = True
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -12
+        TitleFont.Name = 'Segoe UI'
+        TitleFont.Style = []
+        OnDrawColumnCell = DBGrid1DrawColumnCell
+        OnDblClick = DBGrid2DblClick
+        OnTitleClick = DBGrid1TitleClick
+        Columns = <
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'nome'
+            Title.Alignment = taCenter
+            Title.Caption = 'Nome'
+            Width = 333
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'dataentrega'
+            Title.Alignment = taCenter
+            Title.Caption = 'Data de Entrega'
+            Width = 349
+            Visible = True
+          end
+          item
+            Alignment = taCenter
+            Expanded = False
+            FieldName = 'datavencimento'
+            Title.Alignment = taCenter
+            Title.Caption = 'Data de Vencimento'
+            Width = 376
+            Visible = True
+          end>
+      end
     end
   end
   object MainMenu1: TMainMenu
@@ -221,8 +267,8 @@ object Form1: TForm1
   end
   object DSTabelaMensalidade: TDataSource
     DataSet = FDQuery2
-    Left = 880
-    Top = 32
+    Left = 888
+    Top = 72
   end
   object GerarMensalidade: TFDQuery
     Connection = dbConnection
@@ -246,5 +292,50 @@ object Form1: TForm1
       '')
     Left = 612
     Top = 82
+  end
+  object DSTabelaExames: TDataSource
+    DataSet = FDExames
+    Left = 896
+    Top = 376
+  end
+  object FDExames: TFDQuery
+    Active = True
+    MasterSource = DSMensalidade
+    Connection = dbConnection
+    SQL.Strings = (
+      'SELECT * FROM `examepele`')
+    Left = 716
+    Top = 450
+  end
+  object GerarExames: TFDQuery
+    Connection = dbConnection
+    SQL.Strings = (
+      'INSERT INTO mensalidade (socioid, datavencimento, valor, status)'
+      'SELECT s.id, '
+      
+        '       DATE_ADD(DATE_ADD(LAST_DAY(CURRENT_DATE), INTERVAL 1 DAY)' +
+        ', INTERVAL -1 MONTH) AS datavencimento,'
+      '       80, '
+      '       '#39'pendente'#39
+      'FROM socio AS s'
+      'WHERE NOT EXISTS ('
+      '    SELECT 1'
+      '    FROM mensalidade AS m'
+      '    WHERE m.socioid = s.id'
+      
+        '    AND EXTRACT(YEAR_MONTH FROM m.datavencimento) = EXTRACT(YEAR' +
+        '_MONTH FROM CURRENT_DATE)'
+      ');'
+      '')
+    Left = 604
+    Top = 226
+  end
+  object BaixaExame: TFDQuery
+    Active = True
+    Connection = dbConnection
+    SQL.Strings = (
+      'SELECT  * from examepele')
+    Left = 628
+    Top = 362
   end
 end
