@@ -68,6 +68,7 @@ object Form2: TForm2
         Width = 121
         Height = 23
         ImeName = 'US'
+        NumbersOnly = True
         TabOrder = 2
       end
     end
