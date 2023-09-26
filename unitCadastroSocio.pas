@@ -59,7 +59,7 @@ procedure TForm2.Button1Click(Sender: TObject);
 begin
 
 
-   try
+  try
     FDQuery1.SQL.Text := 'INSERT INTO socio (nome, codSocio, telefone, bairro, rua, numero) VALUES (:Nome, :codSocio, :Telefone, :Bairro, :Rua, :Numero)';
 
   FDQuery1.ParamByName('Nome').AsString := EDName.Text;
@@ -86,9 +86,16 @@ begin
   Form1.FDExamesSQL.Refresh();
   Close;
 except
-  on E: Exception do
+  on E: EFDDBEngineException do
   begin
-      ShowMessage('Ocorreu um erro, verifique os campos');
+      if E.ErrorCode = 1062 then
+      begin
+        ShowMessage('Codigo de socio ja atribuido, Escolha Outro');
+      end
+      else
+      begin
+        ShowMessage(E.Message);
+      end;
   end;
 end;
 
