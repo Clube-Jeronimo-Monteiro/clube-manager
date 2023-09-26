@@ -60,6 +60,7 @@ object Form2: TForm2
         Top = 97
         Width = 121
         Height = 23
+        NumbersOnly = True
         TabOrder = 1
       end
       object EDTelefone: TEdit
