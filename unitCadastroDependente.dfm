@@ -52,6 +52,7 @@ object Form3: TForm3
         Height = 23
         ImeName = 'Portuguese (Brazilian ABNT)'
         TabOrder = 0
+        OnKeyPress = EDNameDependenteKeyPress
       end
     end
     object Button1: TButton

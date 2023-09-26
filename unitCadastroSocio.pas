@@ -42,6 +42,7 @@ type
     FDQuery1: TFDQuery;
     GerarExame: TFDQuery;
     procedure Button1Click(Sender: TObject);
+    procedure EDNameKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -101,6 +102,15 @@ end;
 
 
 
+end;
+
+procedure TForm2.EDNameKeyPress(Sender: TObject; var Key: Char);
+begin
+ if (Key in ['0'..'9']) then
+  begin
+    ShowMessage('Não são permitidos números no nome do socio');
+    Key := #0;
+  end;
 end;
 
 end.

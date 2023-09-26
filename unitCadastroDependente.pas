@@ -43,6 +43,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure DBGrid1CellClick(Column: TColumn);
+    procedure EDNameDependenteKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -94,6 +95,15 @@ end;
 procedure TForm3.DBGrid1CellClick(Column: TColumn);
 begin
   NomeSocio.Caption := DBGrid1.Fields[1].Value;
+end;
+
+procedure TForm3.EDNameDependenteKeyPress(Sender: TObject; var Key: Char);
+begin
+if (Key in ['0'..'9']) then
+  begin
+    ShowMessage('Não são permitidos números no nome do dependente');
+    Key := #0;
+  end;
 end;
 
 end.

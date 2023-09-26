@@ -54,12 +54,14 @@ object Form2: TForm2
         Height = 23
         ImeName = 'US'
         TabOrder = 0
+        OnKeyPress = EDNameKeyPress
       end
       object EDCodSocio: TEdit
         Left = 16
         Top = 97
         Width = 121
         Height = 23
+        NumbersOnly = True
         TabOrder = 1
       end
       object EDTelefone: TEdit
@@ -68,6 +70,7 @@ object Form2: TForm2
         Width = 121
         Height = 23
         ImeName = 'US'
+        NumbersOnly = True
         TabOrder = 2
       end
     end
