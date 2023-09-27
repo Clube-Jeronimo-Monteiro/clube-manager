@@ -22,6 +22,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Edit2Exit(Sender: TObject);
+    procedure Edit2Change(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,15 +54,20 @@ begin
 end;
 
 procedure TForm5.Button2Click(Sender: TObject);
+var
+  valueWithoutR: string;
+  floatValue: Double;
 begin
-   Form1.Query1.SQL.Text :=
-  'UPDATE mensalidade ' +
-  'SET status = :status, datapagamento = :datapagamento, valorpago = :valorpago ' +
-  'WHERE id = :id';
+  valueWithoutR := StringReplace(Edit2.Text, 'R$', '', [rfIgnoreCase]);
+  floatValue := StrToFloat(valueWithoutR);
+  Form1.Query1.SQL.Text :=
+    'UPDATE mensalidade ' +
+    'SET status = :status, datapagamento = :datapagamento, valorpago = :valorpago ' +
+    'WHERE id = :id';
 
   Form1.Query1.Params.ParamByName('status').AsString := 'pago';
   Form1.Query1.Params.ParamByName('datapagamento').AsDate := DateTimePicker2.Date;
-  Form1.Query1.Params.ParamByName('valorpago').Value := StrToInt(Edit2.Text);
+  Form1.Query1.Params.ParamByName('valorpago').AsFloat := floatValue; // Assign the floating-point value
   Form1.Query1.Params.ParamByName('id').Value := ID;
 
   Form1.Query1.ExecSQL;
@@ -68,12 +75,27 @@ begin
   Form1.SelectMensalidade.Refresh;
 end;
 
+procedure TForm5.Edit2Change(Sender: TObject);
+var
+  CursorPos: Integer;
+begin
+  CursorPos := Edit2.SelStart;
+  Edit2.Text := StringReplace(Edit2.Text, ',', '.', [rfReplaceAll]);
+  Edit2.SelStart := CursorPos;
+end;
+
+procedure TForm5.Edit2Exit(Sender: TObject);
+begin
+  if (Pos('R$', Edit2.Text) <> 1) then
+    Edit2.Text := 'R$' + Edit2.Text;
+end;
+
 procedure TForm5.FormShow(Sender: TObject);
 begin
     DateTimePicker1.Date := DataVencimento;
     DateTimePicker1.Date := DataVencimento;
     DateTimePicker2.Date := Now;
-    Edit1.Text := Valor.ToString;
+    Edit1.Text := 'R$' + Valor.ToString + ',00';
 end;
 
 end.
