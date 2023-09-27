@@ -96,6 +96,7 @@ object Form5: TForm5
       Top = 46
       Width = 185
       Height = 23
+      ReadOnly = True
       TabOrder = 0
     end
     object Edit2: TEdit
@@ -104,6 +105,8 @@ object Form5: TForm5
       Width = 185
       Height = 23
       TabOrder = 1
+      OnChange = Edit2Change
+      OnExit = Edit2Exit
     end
   end
 end
